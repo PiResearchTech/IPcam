@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>ipcam</title>
+    <link
+    href="https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css"
+    rel="stylesheet"
+  />
+
+
+  <meta http-equiv="Content-Security-Policy" 
+  content="script-src 'self' 'unsafe-inline';" /> 
+  <link rel="stylesheet" type="text/css" href="index.css"> 
+
+
+     <!-- jQuery (Should be declared before other JS imports) -->
+     <script>
+        var $ = jQuery = require('jquery')
+        require('jquery-ui-dist/jquery-ui')
+      </script>
+     
+    <!-- CSS -->
+    <style>
+      .ui-widget-header2 {
+        background: #ff125f;
+        color: #0f0f0f;
+        font-weight: bold;        
+        width: 100%;
+        height: 100%;
+        
+        object-fit: cover;
+        display: inline-block;
+                vertical-align: middle;
+
+      }
+
+      .ui-widget-header {
+        background: #fffd95;
+        color: #0f0f0f;
+        font-weight: bold;        
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: none;
+        vertical-align: middle;
+        
+      }
+
+      .ui-widget-content {
+        background:transparent;
+        color: #333333;
+        display: none;
+      }
+
+
+
+      .ui-widget-content2 {
+        background:transparent;
+        color: #333333;
+        
+        
+      }
+
+      #content {
+        max-width: 100%;
+        max-height: 100%;
+        /* padding: 0.5em; */
+        text-align: center;
+        margin: 0;
+      }
+
+      .ui-resizable-handle {
+        width: 8px;
+        height: 8px;
+        background:transparent;
+        border: 1px solid cyan;
+        
+      }
+
+      
+body { overflow: hidden; }
+
+
+      
+    </style>
+
+    
+  </head>
+
+  <body style="-webkit-app-region: drag">
+    <!-- HTML -->
+    <div id="content" class="ui-widget-content">
+    
+    <img id="motionjpeg" class="ui-widget-content" src="" />
+  
+    <script src="motionjpeg.js"></script>
+ 
+    </div>
+    
+    <div class="login" id="allinone" style="-webkit-app-region: no-drag">
+        <h1>Login to IPCam</h1>
+        <form method="post" action="">
+         <p><input type="text" id="IPAddress" name="IPAddress" value="http://192.168.43.1:8080/video" placeholder="IP Address"></p>  
+          <p><input type="text" id="login" name="login" value="" placeholder="Username"></p>
+          <p><input type="password" id="password" name="password" value="" placeholder="Password"></p>
+          <p class="submit"><input type="button" id="commit" name="commit" value="Login"></p>
+        </form>
+      </div>
+      
+      <div class="login-help" id="id2">
+        <p>is any Complexity for Running? <a href="#">Click here to Github Link !!!</a>.</p>
+        <a href="https://liberapay.com/Researchers_help/donate"><img alt="Donate using Liberapay" src="https://liberapay.com/assets/widgets/donate.svg"></a>
+
+      </div>
+      
+  <script> 
+
+    $(function () {
+
+       $("#content").resizable({
+          ghost:true,
+          handles: "ne, nw, se, sw",
+          aspectRatio: true
+          
+        });
+        $("#content").draggable();
+      });
+    
+
+        
+        var addr = document.getElementById("IPAddress"); 
+        var uname = document.getElementById("login"); 
+        var pwd = document.getElementById("password"); 
+        var button = document.getElementById("commit"); 
+ 
+        // This event is fired when button is clicked 
+        button.addEventListener("click", function () { 
+
+            document.getElementById('motionjpeg').setAttribute("class", "ui-widget-header2");
+            document.getElementById('content').setAttribute("class", "ui-widget-header2");
+          
+            var str = addr.value+'?Username='+uname.value+'&Password='+pwd.value; 
+            console.log(str); 
+            //alert('This link is Right-->'+str);
+            $('#motionjpeg').attr('src', str);
+        
+            $('#IPAddress').fadeOut();
+            $('#login').fadeOut();
+            $('#button').fadeOut();
+            $('#allinone').fadeOut();
+            $('#id2').fadeOut();
+            //$("#l1").fadeOut();
+
+             $(document).ready(function() {
+                    motionjpeg("#motionjpeg"); // Use the function on the image
+             });
+
+        }); 
+    </script> 
+  </body>
+</html>                                             =-

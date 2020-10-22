@@ -1,0 +1,56 @@
+{
+  "name": "ipcam",
+  "version": "0.0.1",
+  "license": "MIT",
+  "description": "ipcam for learning",
+  "author": "Amburose Sekar.S <amburoseicanwin@gmail.com>",
+  "main": "main.js",
+  "scripts": {
+    "postinstall": "install-app-deps",
+    "start": "electron .",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "build": {
+    
+    "appId": "ip.1",
+    "directories": {
+      "output": "build"
+    },
+    "dmg": {
+      "contents": [
+        {
+          "x": 110,
+          "y": 150
+        },
+        {
+          "x": 240,
+          "y": 150,
+          "type": "link",
+          "path": "/"
+        }
+      ]
+    },
+    "linux": {
+      "target": [
+        "AppImage",
+        "deb"
+      ]
+    },
+    "win": {
+      "target": "NSIS",
+      "icon": "build/app.ico"
+      
+    }
+  },
+  "dependencies": {
+    "jquery": "^3.5.1",
+    "jquery-ui-dist": "^1.12.1",
+    "yarn": "^1.22.10"
+  },
+  "devDependencies": {
+    "electron": "^10.1.2",
+    "electron-builder": "^22.9.1"
+  }
+}
